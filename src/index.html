@@ -145,13 +145,13 @@
       }
 
       function getColumnArray() {
-    	  var columnarray = ['År-vecka'];
-          columnarray.push('Befolkning i Sverige (SCB)');
-          columnarray.push('Mobilt BankID (BankID)');
-          columnarray.push('MM Brevlådor totalt (SKV)');
-          columnarray.push('MM Brevlådor privat (SKV)');
-          columnarray.push('Företag i Sverige (BV)');
-          columnarray.push('MM Brevlådor företag (SKV)');
+    	  var columnarray = ['']; // År-vecka
+          columnarray.push('Befolkning i Sverige');
+          columnarray.push('Mobilt BankID');
+          columnarray.push('MM Brevlådor totalt');
+          columnarray.push('MM Brevlådor privat');
+          columnarray.push('Företag i Sverige');
+          columnarray.push('MM Brevlådor företag');
           return columnarray;
       }
 
@@ -227,7 +227,8 @@
     </script>
   </head>
   <body>
-  	<div id="columnchart" style="width: 100%; height: 95%;"></div>
+  	<div id="columnchart" style="width: 100%; height: 91%;"></div>
+    <div><br></div>
     <div align="left">
     	<input id="toggle_historik" type="checkbox" onclick="onClickHistorik()"/>
     	<label for="toggle_historik">Historik (2 år)</label>
@@ -237,5 +238,8 @@
   		<label for="toggle_mobilt_bankid">Mobilt BankID (BankID)</label>
       <input id="toggle_foretag" type="checkbox" onclick="onClickForetag()" checked/>
   		<label for="toggle_foretag">Företag i Sverige (BV)</label>
+    </div>
+    <div align="center">
+      <p><font size="2">Öppna data från SCB, Skatteverket, Bolagsverket och BankID (Finansiell ID-Teknik AB). Öppen källkod på <a href="https://github.com/sceedigh/digitalt-sverige" target="_blank">Github</a>.</font></p>
     </div>
 </html>
