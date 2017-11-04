@@ -3,7 +3,7 @@ Digitalt Sverige - öppna data om digitaliseringen av Sverige
 
 http://digitaltsverige.se
 
-Digitalt Sverige är en tjänst som visar aktuell data om hur stor del av den svenska befolkningen som har en mobil e-legitimation samt hur många privatpersoner respektive företag som har en digital brevlåda för myndighetspost. Mobil e-legitimation och digitala brevlådor för myndighetspost utgör grunden för Sveriges nationella digitala infrastruktur som från och med 2018 kommer att samordnas av Digitaliseringsmyndigheten. 
+Digitalt Sverige är en tjänst som visar aktuell data om hur stor del av den svenska befolkningen som har en mobil e-legitimation samt hur många privatpersoner respektive företag som har en digital brevlåda för myndighetspost. Mobil e-legitimation och digitala brevlådor för myndighetspost utgör grunden för Sveriges nationella digitala infrastruktur som från och med 2018 samordnas av Digitaliseringsmyndigheten. 
 
 Målet med tjänsten är att använda öppna data och framför allt öppna API:er för att visa hur digitaliseringen av Sverige kan beskrivas, mätas och följas upp på ett öppet, kontinuerligt och framtidsinriktat sätt. Tjänsten kan därmed bidra till mer faktabaserade diskussioner om digital valfrihet för både medborgare, myndigheter och kommuner i Sverige.
 
