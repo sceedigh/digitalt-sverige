@@ -13,15 +13,17 @@ Visualisering av data sker via Google Charts (Javascript-API) som beskrivs mer i
 
 https://developers.google.com/chart/interactive/docs/gallery/columnchart
 
-Tjänsten utgörs av en mycket enkel SPA (Single Page Web Application) som hämtar data direkt via Javascript från externa öppna API:er via REST/JSON.
+Tjänsten utgörs av en mycket enkel SPA (Single Page Application) som hämtar data direkt via Javascript från externa öppna API:er via REST/JSON:
 
-Eftersom all exekvering sker direkt i webbläsaren mot externa API:er måste dessa API:er ha aktiverat stöd för Cross-Origin Resource Sharing (CORS):
-
-https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+https://en.wikipedia.org/wiki/Single-page_application
 
 Tjänstens design har delvis influerats av konceptet Serverless Architectures som har beskrivits av Martin Fowler:
 
 https://martinfowler.com/articles/serverless.html
+
+Eftersom all exekvering sker direkt i webbläsaren mot externa API:er måste dessa API:er ha aktiverat stöd för Cross-Origin Resource Sharing (CORS) vilket normalt sett kan utgöra en säkerhetsrisk för API:er som ej tillhandahåller öppna data:
+
+https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 
 Följande datakällor används i tjänsten:
 
