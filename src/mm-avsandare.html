@@ -2,6 +2,7 @@
   <head>
   	<title>Digitalt Sverige - öppna data om digitaliseringen av Sverige</title>
   	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="icon" href="img/ds-favicon.png" type="image/png" sizes="16x16">
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
@@ -18,8 +19,8 @@
       var aktuellt_datum = '2017-11';
       var myndigheter = 349; // http://www.myndighetsregistret.scb.se/Arsstatistik.aspx
       var kommuner = 290; // https://skl.se/tjanster/kommunerlandsting/faktakommunerochlandsting.432.html
-      var mm_myndigheter = 15; // http://www.minameddelanden.se/mm/digitalpostfranmyndigheter.html
-      var mm_kommuner = 15; // http://www.minameddelanden.se/mm/digitalpostfranmyndigheter.html
+      var mm_myndigheter = 17; // http://www.minameddelanden.se/mm/digitalpostfranmyndigheter.html
+      var mm_kommuner = 17; // http://www.minameddelanden.se/mm/digitalpostfranmyndigheter.html
       var mm_myndigheter_procent = Math.round((mm_myndigheter/myndigheter)*100);
       var mm_kommuner_procent = Math.round((mm_kommuner/kommuner)*100);
 
@@ -45,7 +46,7 @@
       function getChartOptions() {
         var options = {
           title: 'Digitalt Sverige - öppna data om digitaliseringen av Sverige',
-          subtitle: 'Mina meddelanden - antal anslutna myndigheter = ' + mm_myndigheter_procent + ' %, antal anslutna kommuner = ' + mm_kommuner_procent + ' %',
+          subtitle: 'Mina meddelanden (digital myndighetspost): antal anslutna myndigheter = ' + mm_myndigheter_procent + ' %, antal anslutna kommuner = ' + mm_kommuner_procent + ' %',
         };
         return options;
       }
@@ -54,8 +55,8 @@
     	  var columnarray = ['']; // År-vecka
         columnarray.push('Myndigheter i Sverige');
         columnarray.push('Kommuner i Sverige');
-        columnarray.push('Myndigheter anslutna till MM');
-        columnarray.push('Kommuner anslutna till MM');
+        columnarray.push('Myndigheter med digital post (MM)');
+        columnarray.push('Kommuner med digital post (MM)');
         return columnarray;
       }
 
