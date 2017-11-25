@@ -1,0 +1,12 @@
+html, body {
+  width: 99%;
+  height: 95%;
+  background: white;
+  margin:5;
+  padding:0;
+}
+
+.page {
+  min-height: 100%;
+  width: 100%;
+}
