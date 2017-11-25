@@ -1,7 +1,9 @@
+<!DOCTYPE html>
 <html>
   <head>
   	<title>Digitalt Sverige - öppna data om digitaliseringen av Sverige</title>
-  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/digitaltsverige.css">
     <link rel="icon" href="img/ds-favicon.png" type="image/png" sizes="16x16">
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -33,11 +35,12 @@
 
       // Företagsstatistik från Bolagsverket (API saknas):
       // http://www.bolagsverket.se/be/sok/etjanster/statistik/statistik-1.3538
+      // Aktuella bolagsformer för Mina meddelanden: AB, KB, HB, BRF, EK
       var foretag_data = {
         "foretag": [
-          {"datum": "2016-01", "antal": 1082595},
-          {"datum": "2017-01", "antal": 1031620},
-          {"datum": "2017-09", "antal": 1010235},
+          {"datum": "2016-01", "antal": 631662},
+          {"datum": "2017-01", "antal": 656395},
+          {"datum": "2017-10", "antal": 674673},
         ]
       };
 
@@ -47,7 +50,7 @@
         "innehavare": [
   	  	{"datum": "2016-01", "antal": 4800000},
         	{"datum": "2017-01", "antal": 5900000},
-        	{"datum": "2017-09", "antal": 6400000},
+        	{"datum": "2017-10", "antal": 6500000},
         ]
     	};
 
@@ -83,7 +86,7 @@
       function filterByVecka(mm_dataresults, vecka) {
         return mm_dataresults.filter(
           function(mm_dataresults) {
-            return mm_dataresults["vecka "] == vecka;
+            return mm_dataresults["vecka"] == vecka;
           }
         );
       }
@@ -141,6 +144,7 @@
         var options = {
           title: 'Digitalt Sverige - öppna data om digitaliseringen av Sverige',
           subtitle: 'Antal anslutna digitala brevlådor ' + mm_aktuelltdatum + ' = ' + mm_antal_totalt + ' st. (' + mm_procent_privat + ' % av privatpersoner, ' + mm_procent_foretag + ' % av företag, ' + mm_mobilt_bankid_procent + ' % av innehavare av Mobilt BankID)',
+          backgroundColor: 'transparent',
         };
         return options;
       }
@@ -164,19 +168,23 @@
 
           var mm_week_index = befolkning[index].datum.slice(0,4) + befolkning[index].datum.slice(5,7);
 
+          console.log(mm_week_index);
+
           var mm_data_item = filterByVecka(mm_data, mm_week_index);
+
+          console.log(mm_data_item);
 
           rowsarray.push(parseInt(mm_data_item["0"].totalt));
           rowsarray.push(parseInt(mm_data_item["0"].privatpersoner.replace(/\s/g, "")));
           rowsarray.push(foretag[index].antal);
-          rowsarray.push(parseInt(mm_data_item["0"].f鰎etag));
+          rowsarray.push(parseInt(mm_data_item["0"].företag));
 
           return rowsarray;
       }
 
       function getRowsArrayLatest(index, befolkning, foretag, mobilt_bankid, mm_data) {
     	  var mm_aktuell = mm_data["0"];
-    	  var rowsarray = [mm_aktuell["vecka "].slice(0,4) + "-" + mm_aktuell["vecka "].slice(4,6)];
+    	  var rowsarray = [mm_aktuell["vecka"].slice(0,4) + " vecka " + mm_aktuell["vecka"].slice(4,6)];
 
     	  rowsarray.push(befolkning[index].antal);
         rowsarray.push(mobilt_bankid[index].antal);
@@ -185,13 +193,13 @@
 
         mm_antal_totalt = mm_aktuell.totalt;
         mm_procent_privat = Math.round((mm_antal_privat / befolkning[index].antal)*100);
-        mm_procent_foretag = Math.round((mm_aktuell.f鰎etag / foretag[index].antal)*100);
+        mm_procent_foretag = Math.round((mm_aktuell.företag / foretag[index].antal)*100);
         mm_mobilt_bankid_procent = Math.round((mm_aktuell.totalt / mobilt_bankid_data.innehavare[2].antal)*100);
 
         rowsarray.push(parseInt(mm_aktuell.totalt));
         rowsarray.push(parseInt(mm_aktuell.privatpersoner.replace(/\s/g, "")));
         rowsarray.push(foretag[index].antal);
-        rowsarray.push(parseInt(mm_aktuell.f鰎etag));
+        rowsarray.push(parseInt(mm_aktuell.företag));
 
     	  return rowsarray;
       }
@@ -220,8 +228,8 @@
 
       function getMMAktuelltDatum(mm_data) {
     	  var mm_aktuell = mm_data["0"];
-          var year = mm_aktuell["vecka "].slice(0,4);
-          var week = mm_aktuell["vecka "].slice(4,6);
+          var year = mm_aktuell["vecka"].slice(0,4);
+          var week = mm_aktuell["vecka"].slice(4,6);
           return year + " vecka " + week;
       }
 
@@ -230,7 +238,7 @@
   <body>
   	<div id="columnchart" style="width: 100%; height: 88%;"></div>
     <div><br></div>
-    <div align="left">
+    <div align="left" style="width: 100%; height: 5%;">
     	<input id="toggle_historik" type="checkbox" onclick="onClickHistorik()"/>
     	<label for="toggle_historik">Historik (2 år)</label>
     	<input id="toggle_befolkning" type="checkbox" onclick="onClickBefolkning()" checked/>
@@ -240,7 +248,7 @@
       <input id="toggle_foretag" type="checkbox" onclick="onClickForetag()" checked/>
   		<label for="toggle_foretag">Företag i Sverige (BV)</label>
     </div>
-    <div align="center">
-      <p><font size="2">Öppna data från SCB, Skatteverket, Bolagsverket och BankID (Finansiell ID-Teknik AB). Öppen källkod på <a href="https://github.com/sceedigh/digitalt-sverige" target="_blank">Github</a>.</font></p>
+    <div align="center" style="width: 100%; height: 2%;">
+      <p><font size="2" color="grey">Öppna data från SCB, Skatteverket, Bolagsverket och BankID (Finansiell ID-Teknik AB). Öppen källkod på <a href="https://github.com/sceedigh/digitalt-sverige" target="_blank">Github</a>.</font></p>
     </div>
 </html>
