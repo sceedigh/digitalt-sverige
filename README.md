@@ -1,12 +1,14 @@
 # digitalt-sverige
-Digitalt Sverige - öppna data om digitaliseringen av Sverige
+<p align="center">
+  <img width="640" height="360" src="http://www.digitaltsverige.se/img/digitaltsverige-logo-1280.jpg">
+</p>
 
 http://digitaltsverige.se
 
-Digitalt Sverige är en tjänst som visar aktuell data om hur stor del av den svenska befolkningen som har en mobil e-legitimation samt hur många privatpersoner respektive företag som har en digital brevlåda för myndighetspost. Mobil e-legitimation och digitala brevlådor för myndighetspost utgör grunden för Sveriges nationella digitala infrastruktur som från och med 2018 samordnas av Digitaliseringsmyndigheten.
+DigitaltSverige.se visar öppna data om digitaliseringen av Sverige utifrån medborgares, företags och offentlig sektors perspektiv. Syftet med tjänsten är att genom öppna data och öppna API:er från aktuella källor visa hur digitaliseringen av Sverige kan beskrivas, mätas och följas upp på ett öppet, kontinuerligt och framtidsinriktat sätt. Tjänsten bidrar därmed till faktabaserade diskussioner om digital valfrihet för både medborgare, företag, myndigheter och kommuner i Sverige.
 
-Målet med tjänsten är att använda öppna data och framför allt öppna API:er för att visa hur digitaliseringen av Sverige kan beskrivas, mätas och följas upp på ett öppet, kontinuerligt och framtidsinriktat sätt. Tjänsten kan därmed bidra till mer faktabaserade diskussioner om digital valfrihet för både medborgare, myndigheter och kommuner i Sverige.
-
+Mobil e-legitimation och digitala brevlådor för myndighetspost utgör grunden för Sveriges nationella digitala infrastruktur som från och med 2018 samordnas av Digitaliseringsmyndigheten.
+          
 I nuläget är data om digitala brevlådor tillgängliga via öppet API från Skatteverket och uppdateras därmed automatiskt. Övriga data om befolkningsmängd (SCB), företag (Bolagsverket) och Mobilt BankID (Finansiell ID-Teknik AB) finns ej tillgängliga via öppet API och måste därmed uppdateras manuellt genom kontinuerliga uppdateringar av tjänsten. Genom att visa vilka datakällor som är intressanta för att mäta och följa upp digitaliseringen av Sverige kan tjänsten fungera som underlag för att ställa krav på att tillgängliggöra dessa datakällor via API:er i framtiden.
 
 Visualisering av data sker via Google Charts (Javascript-API) som beskrivs mer i detalj här:
