@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>Digitalt Sverige - öppna data om digitaliseringen av Sverige</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/digitaltsverige.css">
+    <link rel="icon" href="img/ds-favicon.png" type="image/png" sizes="16x16">
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar'], 'language': 'sv'});
+      google.charts.setOnLoadCallback(drawChart);
+
+      window.addEventListener("resize", updateChart);
+
+      var toggle_historik = false;
+      var toggle_befolkning = true;
+      var toggle_foretag = true;
+      var toggle_mobiltbankid = true;
+
+      var chartdata;
+      var chartview;
+      var chart;
+
+      // Befolkningsmängd från SCB (API saknas):
+      // http://www.scb.se/hitta-statistik/statistik-efter-amne/befolkning/befolkningens-sammansattning/befolkningsstatistik/
+      var scb_data = {
+        "befolkning": [
+          {"datum": "2016-01", "antal": 9858855},
+          {"datum": "2017-01", "antal": 10008271},
+          {"datum": "2017-09", "antal": 10093734},
+        ]
+      };
+
+      // Företagsstatistik från Bolagsverket (API saknas):
+      // http://www.bolagsverket.se/be/sok/etjanster/statistik/statistik-1.3538
+      // Aktuella bolagsformer för Mina meddelanden: AB, KB, HB, BRF, EK
+      var foretag_data = {
+        "foretag": [
+          {"datum": "2016-01", "antal": 631662},
+          {"datum": "2017-01", "antal": 656395},
+          {"datum": "2017-10", "antal": 674673},
+        ]
+      };
+
+      // Innehavare av Mobilt BankID (API saknas):
+      // https://www.bankid.com/om-oss/statistik
+      var mobilt_bankid_data = {
+        "innehavare": [
+  	  	{"datum": "2016-01", "antal": 4800000},
+        	{"datum": "2017-01", "antal": 5900000},
+        	{"datum": "2017-10", "antal": 6500000},
+        ]
+    	};
+
+      // Mina meddelanden - antal innehavare av digitala brevlådor för myndighetspost (Öppet API från Skatteverket)
+      var mm_data_url = "https://skatteverket.entryscape.net/rowstore/dataset/23fb9225-4eb6-4ae4-9835-5dc721c75717/json";
+
+      var mm_aktuelltdatum;
+      var mm_antal_totalt;
+      var mm_procent_privat;
+      var mm_procent_foretag;
+      var mm_mobilt_bankid_procent;
+
+      function onClickHistorik() {
+        toggle_historik = document.getElementById("toggle_historik").checked;
+        drawChart();
+      }
+
+      function onClickBefolkning() {
+        toggle_befolkning = document.getElementById("toggle_befolkning").checked;
+        updateChart();
+      }
+
+      function onClickForetag() {
+    	  toggle_foretag = document.getElementById("toggle_foretag").checked;
+    	  updateChart();
+      }
+
+      function onClickMobiltBankID() {
+    	  toggle_mobiltbankid = document.getElementById("toggle_mobilt_bankid").checked;
+    	  updateChart();
+      }
+
+      function filterByVecka(mm_dataresults, vecka) {
+        return mm_dataresults.filter(
+          function(mm_dataresults) {
+            return mm_dataresults["vecka"] == vecka;
+          }
+        );
+      }
+
+      function drawChart() {
+
+        // Hämta data om Mina meddelanden
+        fetch(mm_data_url)
+          .then(
+            function(response) {
+              if (response.status !== 200) {
+                console.log('Looks like there was a problem. Status Code: ' +
+                  response.status);
+                return;
+              }
+
+              // Examine the text in the response
+              response.json().then(function(data) {
+
+                var chartarray = [];
+                var columnarray = getColumnArray();
+                chartarray.push(columnarray);
+
+                // Historik
+                if (toggle_historik === true) {
+                  for (var i = 0; i < scb_data.befolkning.length-1; i++) {
+                  	chartarray.push(getRowsArray(i.toString(), scb_data.befolkning, foretag_data.foretag, mobilt_bankid_data.innehavare, data.results));
+                  }
+                }
+
+                // Aktuell data
+                chartarray.push(getRowsArrayLatest(scb_data.befolkning.length-1, scb_data.befolkning, foretag_data.foretag, mobilt_bankid_data.innehavare, data.results));
+
+                mm_aktuelltdatum = getMMAktuelltDatum(data.results);
+
+                chartdata = google.visualization.arrayToDataTable(chartarray);
+
+                updateChart();
+              });
+            }
+          )
+          .catch(function(err) {
+            console.log('Fetch Error :-S', err);
+        });
+      }
+
+      function updateChart() {
+        chartview = new google.visualization.DataView(chartdata);
+        chart = new google.charts.Bar(document.getElementById('columnchart'));
+        chartview.setColumns(getViewColumns());
+        chart.draw(chartview, google.charts.Bar.convertOptions(getChartOptions()));
+      }
+
+      function getChartOptions() {
+        var options = {
+          title: 'Digitalt Sverige - öppna data om digitaliseringen av Sverige',
+          subtitle: 'Antal anslutna digitala brevlådor ' + mm_aktuelltdatum + ' = ' + mm_antal_totalt + ' st. (' + mm_procent_privat + ' % av privatpersoner, ' + mm_procent_foretag + ' % av företag, ' + mm_mobilt_bankid_procent + ' % av innehavare av Mobilt BankID)',
+          backgroundColor: 'transparent',
+        };
+        return options;
+      }
+
+      function getColumnArray() {
+    	  var columnarray = ['']; // År-vecka
+          columnarray.push('Befolkning i Sverige');
+          columnarray.push('Mobilt BankID');
+          columnarray.push('MM Brevlådor totalt');
+          columnarray.push('MM Brevlådor privat');
+          columnarray.push('Företag i Sverige');
+          columnarray.push('MM Brevlådor företag');
+          return columnarray;
+      }
+
+      function getRowsArray(index, befolkning, foretag, mobilt_bankid, mm_data) {
+    	  var rowsarray = [befolkning[index].datum];
+
+          rowsarray.push(befolkning[index].antal);
+          rowsarray.push(mobilt_bankid[index].antal);
+
+          var mm_week_index = befolkning[index].datum.slice(0,4) + befolkning[index].datum.slice(5,7);
+
+          console.log(mm_week_index);
+
+          var mm_data_item = filterByVecka(mm_data, mm_week_index);
+
+          console.log(mm_data_item);
+
+          rowsarray.push(parseInt(mm_data_item["0"].totalt));
+          rowsarray.push(parseInt(mm_data_item["0"].privatpersoner.replace(/\s/g, "")));
+          rowsarray.push(foretag[index].antal);
+          rowsarray.push(parseInt(mm_data_item["0"].företag));
+
+          return rowsarray;
+      }
+
+      function getRowsArrayLatest(index, befolkning, foretag, mobilt_bankid, mm_data) {
+    	  var mm_aktuell = mm_data["0"];
+    	  var rowsarray = [mm_aktuell["vecka"].slice(0,4) + " vecka " + mm_aktuell["vecka"].slice(4,6)];
+
+    	  rowsarray.push(befolkning[index].antal);
+        rowsarray.push(mobilt_bankid[index].antal);
+
+        var mm_antal_privat = parseInt(mm_aktuell.privatpersoner.replace(/\s/g, ""));
+
+        mm_antal_totalt = mm_aktuell.totalt;
+        mm_procent_privat = Math.round((mm_antal_privat / befolkning[index].antal)*100);
+        mm_procent_foretag = Math.round((mm_aktuell.företag / foretag[index].antal)*100);
+        mm_mobilt_bankid_procent = Math.round((mm_aktuell.totalt / mobilt_bankid_data.innehavare[2].antal)*100);
+
+        rowsarray.push(parseInt(mm_aktuell.totalt));
+        rowsarray.push(parseInt(mm_aktuell.privatpersoner.replace(/\s/g, "")));
+        rowsarray.push(foretag[index].antal);
+        rowsarray.push(parseInt(mm_aktuell.företag));
+
+    	  return rowsarray;
+      }
+
+      function getViewColumns() {
+        var columns = [0];
+
+        if (toggle_befolkning === true) {
+          columns.push(1);
+        }
+        if (toggle_mobiltbankid === true) {
+          columns.push(2);
+        }
+        // MM Totalt
+        columns.push(3);
+        // MM privat
+        columns.push(4);
+        if (toggle_foretag === true) {
+          columns.push(5);
+        }
+        // MM foretag
+        columns.push(6);
+
+        return columns;
+      }
+
+      function getMMAktuelltDatum(mm_data) {
+    	  var mm_aktuell = mm_data["0"];
+          var year = mm_aktuell["vecka"].slice(0,4);
+          var week = mm_aktuell["vecka"].slice(4,6);
+          return year + " vecka " + week;
+      }
+
+    </script>
+  </head>
+  <body>
+  	<div id="columnchart" style="width: 100%; height: 88%;"></div>
+    <div><br></div>
+    <div align="left" style="width: 100%; height: 5%;">
+    	<input id="toggle_historik" type="checkbox" onclick="onClickHistorik()"/>
+    	<label for="toggle_historik">Historik (2 år)</label>
+    	<input id="toggle_befolkning" type="checkbox" onclick="onClickBefolkning()" checked/>
+  		<label for="toggle_befolkning">Befolkning i Sverige (SCB)</label>
+  		<input id="toggle_mobilt_bankid" type="checkbox" onclick="onClickMobiltBankID()" checked/>
+  		<label for="toggle_mobilt_bankid">Mobilt BankID (BankID)</label>
+      <input id="toggle_foretag" type="checkbox" onclick="onClickForetag()" checked/>
+  		<label for="toggle_foretag">Företag i Sverige (BV)</label>
+    </div>
+    <div align="center" style="width: 100%; height: 2%;">
+      <p><font size="2" color="grey">Öppna data från SCB, Skatteverket, Bolagsverket och BankID (Finansiell ID-Teknik AB). Öppen källkod på <a href="https://github.com/sceedigh/digitalt-sverige" target="_blank">Github</a>.</font></p>
+    </div>
+</html>

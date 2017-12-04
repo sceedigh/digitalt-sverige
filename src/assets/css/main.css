@@ -3569,10 +3569,14 @@
 		}
 
 		#main header.major h2:after {
-			background-color: #dddddd;
-			background-image: -moz-linear-gradient(90deg, #efa8b0, #a89cc8, #8cc9f0);
-			background-image: -webkit-linear-gradient(90deg, #efa8b0, #a89cc8, #8cc9f0);
-			background-image: -ms-linear-gradient(90deg, #efa8b0, #a89cc8, #8cc9f0);
+			background-color: #dddddddd;
+			background-image: -moz-linear-gradient(90deg, #5865f1, #667885, #cbb85c);
+			background-image: -webkit-linear-gradient(90deg, #5865f1, #667885, #cbb85c);
+			background-image: -ms-linear-gradient(90deg, #5865f1, #667885, #cbb85c);
+			background-image: linear-gradient(90deg, #5865f1, #667885, #cbb85c);
+		}
+
+		.oisahgoih {
 			background-image: linear-gradient(90deg, #efa8b0, #a89cc8, #8cc9f0);
 		}
 

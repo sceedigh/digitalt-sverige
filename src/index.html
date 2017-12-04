@@ -1,254 +1,196 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+<!--
+	Stellar by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
-  <head>
-  	<title>Digitalt Sverige - öppna data om digitaliseringen av Sverige</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="css/digitaltsverige.css">
-    <link rel="icon" href="img/ds-favicon.png" type="image/png" sizes="16x16">
+	<head>
+		<title>Digitalt Sverige - öppna data om digitaliseringen av Sverige</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="icon" href="img/ds-favicon.png" type="image/png" sizes="16x16">
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<script>
+			function fetchData() {
+				fetchMMData();
+			}
+		</script>
+	</head>
+	<body onload="fetchData()">
 
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<!-- Wrapper -->
+			<div id="wrapper">
 
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['bar'], 'language': 'sv'});
-      google.charts.setOnLoadCallback(drawChart);
+				<!-- Header -->
+					<header id="header" class="alt">
+						<!--<span class="logo"><img src="images/logo.svg" alt="" /></span>-->
+						<!--<p style="text-align:center"><img src="img/digitaltsverige-logo-banner.jpg" height="100" alt="Digitalt Sverige - öppna data om digitaliseringen av Sverige"></p>-->
+						<h1><b><font color="#5865f1">Digitalt</font><font color="#cbb85c">Sverige.se</font></b></h1>
+						<h4><b><i><font color="#cbb85c">öppna data om digitaliseringen av Sverige</font></b></i></h4>
+					</header>
 
-      window.addEventListener("resize", updateChart);
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="#medborgare">Medborgare</a></li>
+							<li><a href="#foretag">Företag</a></li>
+							<li><a href="#offentligsektor">Offentlig sektor</a></li>
+						</ul>
+					</nav>
 
-      var toggle_historik = false;
-      var toggle_befolkning = true;
-      var toggle_foretag = true;
-      var toggle_mobiltbankid = true;
+				<!-- Main -->
+					<div id="main">
 
-      var chartdata;
-      var chartview;
-      var chart;
+						<!-- Medborgare -->
+							<section id="medborgare" class="main special">
+								<header class="major">
+									<h2>Medborgare</h2>
+								</header>
+								<ul class="features">
+									<li>
+										<span class="icon major style5 fa-user-o"></span>
+										<h3><div id="stat-befolkning"></div></h3>
+									</li>
+									<li>
+										<span class="icon major style3 fa-id-badge"></span>
+										<h3><div id="stat-mobiltbankid"></div></h3>
+									</li>
+									<li>
+										<span class="icon major style1 fa-envelope-o"></span>
+										<h3><div id="stat-mm-medborgare"></div></h3>
+									</li>
+								</ul>
+								<!--<footer class="major">
+									<ul class="actions">
+										<li><a href="statistik-medborgare.html" class="button">Visa statistik om medborgare</a></li>
+									</ul>
+								</footer>-->
+							</section>
 
-      // Befolkningsmängd från SCB (API saknas):
-      // http://www.scb.se/hitta-statistik/statistik-efter-amne/befolkning/befolkningens-sammansattning/befolkningsstatistik/
-      var scb_data = {
-        "befolkning": [
-          {"datum": "2016-01", "antal": 9858855},
-          {"datum": "2017-01", "antal": 10008271},
-          {"datum": "2017-09", "antal": 10093734},
-        ]
-      };
+						<!-- Företag -->
+							<section id="foretag" class="main special">
+								<header class="major">
+									<h2>Företag</h2>
+								</header>
+								<ul class="features">
+									<li>
+										<span class="icon major style5 fa-industry"></span>
+										<h3><div id="stat-foretag"></div></h3>
+									</li>
+									<li>
+										<span class="icon major style1 fa-envelope-o"></span>
+										<h3><div id="stat-mm-foretag"></div></h3>
+									</li>
+								</ul>
+								<!--<footer class="major">
+									<ul class="actions">
+										<li><a href="statistik-foretag.html" class="button">Visa statistik om företag</a></li>
+									</ul>
+								</footer>-->
+							</section>
 
-      // Företagsstatistik från Bolagsverket (API saknas):
-      // http://www.bolagsverket.se/be/sok/etjanster/statistik/statistik-1.3538
-      // Aktuella bolagsformer för Mina meddelanden: AB, KB, HB, BRF, EK
-      var foretag_data = {
-        "foretag": [
-          {"datum": "2016-01", "antal": 631662},
-          {"datum": "2017-01", "antal": 656395},
-          {"datum": "2017-10", "antal": 674673},
-        ]
-      };
+						<!-- Offentlig sektor -->
+							<section id="offentligsektor" class="main special">
+								<header class="major">
+									<h2>Offentlig sektor</h2>
+								</header>
+								<ul class="features">
+									<li>
+										<span class="icon major style5 fa-institution"></span>
+										<h3><strong><div id="stat-offentligsektor-myndigheter"></div></strong></h3>
+									</li>
+									<li>
+										<span class="icon major style3 fa-institution"></span>
+										<h3><strong><div id="stat-offentligsektor-kommuner"></div></strong></h3>
+									</li>
+								</ul>
+								<ul class="statistics">
+									<li class="style3">
+										<a href="https://www.elegnamnden.se/download/18.515a6be615c637b9aa4150e1/1505211922933/2017-09-11+E-legtimationsenk%C3%A4ten+2017+resultat.pdf" target="_blank"><span class="icon fa-id-badge"></span></a>
+										<strong>58 %</strong> av myndigheter och kommuner använder e-legitimering
+									</li>
+									<li class="style4">
+										<a href="http://www.minameddelanden.se/mm/digitalpostfranmyndigheter.html" target="_blank"><span class="icon fa-envelope-o"></span></a>
+										<strong><div id="stat-mm-myndigheter"></div></strong> av myndigheter skickar säker digital post.
+									</li>
+									<li class="style5">
+										<a href="http://www.minameddelanden.se/mm/digitalpostfranmyndigheter.html" target="_blank"><span class="icon fa-envelope-o"></span></a>
+										<strong><div id="stat-mm-kommuner"></div></strong> av kommuner skickar säker digital post.
+									</li>
+								</ul>
+								<!--<footer class="major">
+									<ul class="actions">
+										<li><a href="mm-avsandare.html" class="button">Visa statistik om offentlig sektor</a></li>
+									</ul>
+								</footer>-->
+							</section>
 
-      // Innehavare av Mobilt BankID (API saknas):
-      // https://www.bankid.com/om-oss/statistik
-      var mobilt_bankid_data = {
-        "innehavare": [
-  	  	{"datum": "2016-01", "antal": 4800000},
-        	{"datum": "2017-01", "antal": 5900000},
-        	{"datum": "2017-10", "antal": 6500000},
-        ]
-    	};
+						<!-- Get Started -->
+							<section id="cta" class="main special">
+								<header class="major">
+									<h2>Om tjänsten</h2>
+									<p>DigitaltSverige.se visar öppna data om digitaliseringen av Sverige utifrån
+										medborgares, företags och offentlig sektors perspektiv.
+										Syftet med tjänsten är att genom öppna data och öppna API:er från aktuella källor
+										visa hur digitaliseringen av Sverige kan beskrivas, mätas och följas upp
+										på ett öppet, kontinuerligt och framtidsinriktat sätt. Tjänsten bidrar därmed till
+										faktabaserade diskussioner om digital valfrihet för både medborgare, företag, myndigheter
+										och kommuner i Sverige.</p>
+									<p>För medborgare visas hur stor del av befolkningen som har en mobil e-legitimation samt hur många
+										privatpersoner som har en digital brevlåda för myndighetspost.</p>
+									<p>För företag visas antal registrerade företag i Sverige (AB, KB, HB, BRF, EK) samt hur
+										många företag som har en digital brevlåda för myndighetspost.</p>
+									<p>För offentlig sektor visas hur många myndigheter och kommuner
+										som nyttjar e-legitimering samt hur många som skickar säker digital post.</p>
+									<p>Mobil e-legitimation och digitala brevlådor för myndighetspost utgör grunden för
+										Sveriges nationella digitala infrastruktur som från och med 2018 samordnas av
+										Digitaliseringsmyndigheten.</p>
+								</header>
+							</section>
 
-      // Mina meddelanden - antal innehavare av digitala brevlådor för myndighetspost (Öppet API från Skatteverket)
-      var mm_data_url = "https://skatteverket.entryscape.net/rowstore/dataset/23fb9225-4eb6-4ae4-9835-5dc721c75717/json";
+					</div>
 
-      var mm_aktuelltdatum;
-      var mm_antal_totalt;
-      var mm_procent_privat;
-      var mm_procent_foretag;
-      var mm_mobilt_bankid_procent;
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<h2>DigitaltSverige.se</h2>
+							<p>Tjänsten baseras på öppna data från SCB, Skatteverket, Bolagsverket, E-legitimationsnämnden och BankID (Finansiell ID-Teknik AB).</p>
+							<p>Tjänsten är publicerad som öppen källkod på Github.</p>
+						</section>
+						<section>
+							<h2>Kontakt</h2>
+							<dl class="alt">
+								<dt>E-post</dt>
+								<dd><a href="mailto:info@digitaltsverige.se">info@digitaltsverige.se</a></dd>
+							</dl>
+							<ul class="icons">
+								<li><a href="#" class="icon fa-twitter alt"><span class="label">Twitter</span></a></li>
+								<li><a href="https://github.com/sceedigh/digitalt-sverige" target="_blank" class="icon fa-github alt"><span class="label">GitHub</span></a></li>
+							</ul>
+						</section>
+						<p class="copyright">&copy; DigitaltSverige.se. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+					</footer>
 
-      function onClickHistorik() {
-        toggle_historik = document.getElementById("toggle_historik").checked;
-        drawChart();
-      }
+			</div>
 
-      function onClickBefolkning() {
-        toggle_befolkning = document.getElementById("toggle_befolkning").checked;
-        updateChart();
-      }
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
 
-      function onClickForetag() {
-    	  toggle_foretag = document.getElementById("toggle_foretag").checked;
-    	  updateChart();
-      }
+			<script src="assets/js/stat-befolkning.js"></script>
+			<script src="assets/js/stat-foretag.js"></script>
+			<script src="assets/js/stat-mobiltbankid.js"></script>
+			<script src="assets/js/stat-offentligsektor.js"></script>
+			<script src="assets/js/stat-mm.js"></script>
 
-      function onClickMobiltBankID() {
-    	  toggle_mobiltbankid = document.getElementById("toggle_mobilt_bankid").checked;
-    	  updateChart();
-      }
-
-      function filterByVecka(mm_dataresults, vecka) {
-        return mm_dataresults.filter(
-          function(mm_dataresults) {
-            return mm_dataresults["vecka"] == vecka;
-          }
-        );
-      }
-
-      function drawChart() {
-
-        // Hämta data om Mina meddelanden
-        fetch(mm_data_url)
-          .then(
-            function(response) {
-              if (response.status !== 200) {
-                console.log('Looks like there was a problem. Status Code: ' +
-                  response.status);
-                return;
-              }
-
-              // Examine the text in the response
-              response.json().then(function(data) {
-
-                var chartarray = [];
-                var columnarray = getColumnArray();
-                chartarray.push(columnarray);
-
-                // Historik
-                if (toggle_historik === true) {
-                  for (var i = 0; i < scb_data.befolkning.length-1; i++) {
-                  	chartarray.push(getRowsArray(i.toString(), scb_data.befolkning, foretag_data.foretag, mobilt_bankid_data.innehavare, data.results));
-                  }
-                }
-
-                // Aktuell data
-                chartarray.push(getRowsArrayLatest(scb_data.befolkning.length-1, scb_data.befolkning, foretag_data.foretag, mobilt_bankid_data.innehavare, data.results));
-
-                mm_aktuelltdatum = getMMAktuelltDatum(data.results);
-
-                chartdata = google.visualization.arrayToDataTable(chartarray);
-
-                updateChart();
-              });
-            }
-          )
-          .catch(function(err) {
-            console.log('Fetch Error :-S', err);
-        });
-      }
-
-      function updateChart() {
-        chartview = new google.visualization.DataView(chartdata);
-        chart = new google.charts.Bar(document.getElementById('columnchart'));
-        chartview.setColumns(getViewColumns());
-        chart.draw(chartview, google.charts.Bar.convertOptions(getChartOptions()));
-      }
-
-      function getChartOptions() {
-        var options = {
-          title: 'Digitalt Sverige - öppna data om digitaliseringen av Sverige',
-          subtitle: 'Antal anslutna digitala brevlådor ' + mm_aktuelltdatum + ' = ' + mm_antal_totalt + ' st. (' + mm_procent_privat + ' % av privatpersoner, ' + mm_procent_foretag + ' % av företag, ' + mm_mobilt_bankid_procent + ' % av innehavare av Mobilt BankID)',
-          backgroundColor: 'transparent',
-        };
-        return options;
-      }
-
-      function getColumnArray() {
-    	  var columnarray = ['']; // År-vecka
-          columnarray.push('Befolkning i Sverige');
-          columnarray.push('Mobilt BankID');
-          columnarray.push('MM Brevlådor totalt');
-          columnarray.push('MM Brevlådor privat');
-          columnarray.push('Företag i Sverige');
-          columnarray.push('MM Brevlådor företag');
-          return columnarray;
-      }
-
-      function getRowsArray(index, befolkning, foretag, mobilt_bankid, mm_data) {
-    	  var rowsarray = [befolkning[index].datum];
-
-          rowsarray.push(befolkning[index].antal);
-          rowsarray.push(mobilt_bankid[index].antal);
-
-          var mm_week_index = befolkning[index].datum.slice(0,4) + befolkning[index].datum.slice(5,7);
-
-          console.log(mm_week_index);
-
-          var mm_data_item = filterByVecka(mm_data, mm_week_index);
-
-          console.log(mm_data_item);
-
-          rowsarray.push(parseInt(mm_data_item["0"].totalt));
-          rowsarray.push(parseInt(mm_data_item["0"].privatpersoner.replace(/\s/g, "")));
-          rowsarray.push(foretag[index].antal);
-          rowsarray.push(parseInt(mm_data_item["0"].företag));
-
-          return rowsarray;
-      }
-
-      function getRowsArrayLatest(index, befolkning, foretag, mobilt_bankid, mm_data) {
-    	  var mm_aktuell = mm_data["0"];
-    	  var rowsarray = [mm_aktuell["vecka"].slice(0,4) + " vecka " + mm_aktuell["vecka"].slice(4,6)];
-
-    	  rowsarray.push(befolkning[index].antal);
-        rowsarray.push(mobilt_bankid[index].antal);
-
-        var mm_antal_privat = parseInt(mm_aktuell.privatpersoner.replace(/\s/g, ""));
-
-        mm_antal_totalt = mm_aktuell.totalt;
-        mm_procent_privat = Math.round((mm_antal_privat / befolkning[index].antal)*100);
-        mm_procent_foretag = Math.round((mm_aktuell.företag / foretag[index].antal)*100);
-        mm_mobilt_bankid_procent = Math.round((mm_aktuell.totalt / mobilt_bankid_data.innehavare[2].antal)*100);
-
-        rowsarray.push(parseInt(mm_aktuell.totalt));
-        rowsarray.push(parseInt(mm_aktuell.privatpersoner.replace(/\s/g, "")));
-        rowsarray.push(foretag[index].antal);
-        rowsarray.push(parseInt(mm_aktuell.företag));
-
-    	  return rowsarray;
-      }
-
-      function getViewColumns() {
-        var columns = [0];
-
-        if (toggle_befolkning === true) {
-          columns.push(1);
-        }
-        if (toggle_mobiltbankid === true) {
-          columns.push(2);
-        }
-        // MM Totalt
-        columns.push(3);
-        // MM privat
-        columns.push(4);
-        if (toggle_foretag === true) {
-          columns.push(5);
-        }
-        // MM foretag
-        columns.push(6);
-
-        return columns;
-      }
-
-      function getMMAktuelltDatum(mm_data) {
-    	  var mm_aktuell = mm_data["0"];
-          var year = mm_aktuell["vecka"].slice(0,4);
-          var week = mm_aktuell["vecka"].slice(4,6);
-          return year + " vecka " + week;
-      }
-
-    </script>
-  </head>
-  <body>
-  	<div id="columnchart" style="width: 100%; height: 88%;"></div>
-    <div><br></div>
-    <div align="left" style="width: 100%; height: 5%;">
-    	<input id="toggle_historik" type="checkbox" onclick="onClickHistorik()"/>
-    	<label for="toggle_historik">Historik (2 år)</label>
-    	<input id="toggle_befolkning" type="checkbox" onclick="onClickBefolkning()" checked/>
-  		<label for="toggle_befolkning">Befolkning i Sverige (SCB)</label>
-  		<input id="toggle_mobilt_bankid" type="checkbox" onclick="onClickMobiltBankID()" checked/>
-  		<label for="toggle_mobilt_bankid">Mobilt BankID (BankID)</label>
-      <input id="toggle_foretag" type="checkbox" onclick="onClickForetag()" checked/>
-  		<label for="toggle_foretag">Företag i Sverige (BV)</label>
-    </div>
-    <div align="center" style="width: 100%; height: 2%;">
-      <p><font size="2" color="grey">Öppna data från SCB, Skatteverket, Bolagsverket och BankID (Finansiell ID-Teknik AB). Öppen källkod på <a href="https://github.com/sceedigh/digitalt-sverige" target="_blank">Github</a>.</font></p>
-    </div>
+	</body>
 </html>
