@@ -11,10 +11,6 @@ Mobil e-legitimation och digitala brevlådor för myndighetspost utgör grunden 
           
 I nuläget är data om digitala brevlådor tillgängliga via öppet API från Skatteverket och uppdateras därmed automatiskt. Övriga data om befolkningsmängd (SCB), företag (Bolagsverket) och Mobilt BankID (Finansiell ID-Teknik AB) finns ej tillgängliga via öppet API och måste därmed uppdateras manuellt genom kontinuerliga uppdateringar av tjänsten. Genom att visa vilka datakällor som är intressanta för att mäta och följa upp digitaliseringen av Sverige kan tjänsten fungera som underlag för att ställa krav på att tillgängliggöra dessa datakällor via API:er i framtiden.
 
-Visualisering av data sker via Google Charts (Javascript-API) som beskrivs mer i detalj här:
-
-https://developers.google.com/chart/interactive/docs/gallery/columnchart
-
 Tjänsten utgörs av en mycket enkel SPA (Single Page Application) som hämtar data direkt via Javascript från externa öppna API:er via REST/JSON:
 
 https://en.wikipedia.org/wiki/Single-page_application
