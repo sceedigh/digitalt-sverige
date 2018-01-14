@@ -1,4 +1,4 @@
-var myndigheter_antal = 349; // http://www.myndighetsregistret.scb.se/Arsstatistik.aspx
+var myndigheter_antal = 351; // http://www.myndighetsregistret.scb.se/Arsstatistik.aspx
 var kommuner_antal = 290; // https://skl.se/tjanster/kommunerlandsting/faktakommunerochlandsting.432.html
 
 document.addEventListener("DOMContentLoaded", function() {

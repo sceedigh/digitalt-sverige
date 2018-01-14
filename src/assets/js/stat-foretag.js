@@ -3,14 +3,14 @@
 // Aktuella bolagsformer för Mina meddelanden: AB, KB, HB, BRF, EK
   var foretag_data = {
 	"foretag": [
-	  {"datum": "2016-01", "antal": 631662},
-	  {"datum": "2017-01", "antal": 656395},
-	  {"datum": "2017-10", "antal": 674673},
+	  {"datum": "2016-01", "antal": 631691},
+	  {"datum": "2017-01", "antal": 656423},
+	  {"datum": "2017-12", "antal": 678820},
 	]
 };
 
 document.addEventListener("DOMContentLoaded", function() {
     // this function runs when the DOM is ready, i.e. when the document has been parsed
-	var foretag_antal = foretag_data.foretag[2].antal;
+	var foretag_antal = foretag_data.foretag[2].antal.toLocaleString();
   document.getElementById("stat-foretag").textContent = foretag_antal + " företag är registrerade i Sverige.";
 });

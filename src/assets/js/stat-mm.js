@@ -2,8 +2,8 @@
 var mm_data_url = "https://skatteverket.entryscape.net/rowstore/dataset/23fb9225-4eb6-4ae4-9835-5dc721c75717/json";
 var mm_antal_privat;
 var mm_antal_foretag;
-var mm_myndigheter = 17; // http://www.minameddelanden.se/mm/digitalpostfranmyndigheter.html
-var mm_kommuner = 17; // http://www.minameddelanden.se/mm/digitalpostfranmyndigheter.html
+var mm_myndigheter = 19; // 201802
+var mm_kommuner = 21; // 201802
 var mm_myndigheter_procent = Math.round((mm_myndigheter/myndigheter_antal)*100);
 var mm_kommuner_procent = Math.round((mm_kommuner/kommuner_antal)*100);
 
@@ -25,9 +25,9 @@ function fetchMMData() {
 					var mm_aktuell = data.results["0"];
 
 					mm_antal_privat = (parseInt(mm_aktuell.privatpersoner.replace(/\s/g, "")) / 1000000).toFixed(1);
-					mm_antal_foretag = parseInt(mm_aktuell.företag.replace(/\s/g, ""));
+					mm_antal_foretag = parseInt(mm_aktuell.företag.replace(/\s/g, "")).toLocaleString();
 
-					document.getElementById("stat-mm-medborgare").textContent = mm_antal_privat + " miljoner svenskar har en säker digital brevlåda för myndighetspost.";
+					document.getElementById("stat-mm-privat").textContent = mm_antal_privat + " miljoner svenskar har en säker digital brevlåda för myndighetspost.";
 					document.getElementById("stat-mm-foretag").textContent = mm_antal_foretag + " företag har en säker digital brevlåda för myndighetspost.";
 					document.getElementById("stat-mm-myndigheter").textContent = mm_myndigheter_procent + " %";
 					document.getElementById("stat-mm-kommuner").textContent = mm_kommuner_procent + " %";
