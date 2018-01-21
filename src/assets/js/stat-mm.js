@@ -27,7 +27,7 @@ function fetchMMData() {
 					mm_antal_privat = (parseInt(mm_aktuell.privatpersoner.replace(/\s/g, "")) / 1000000).toFixed(1);
 					mm_antal_foretag = parseInt(mm_aktuell.företag.replace(/\s/g, "")).toLocaleString();
 
-					document.getElementById("stat-mm-privat").textContent = mm_antal_privat + " miljoner svenskar har en säker digital brevlåda för myndighetspost.";
+					document.getElementById("stat-mm-privat").textContent = mm_antal_privat + " miljoner privatpersoner har en säker digital brevlåda för myndighetspost.";
 					document.getElementById("stat-mm-foretag").textContent = mm_antal_foretag + " företag har en säker digital brevlåda för myndighetspost.";
 					document.getElementById("stat-mm-myndigheter").textContent = mm_myndigheter_procent + " %";
 					document.getElementById("stat-mm-kommuner").textContent = mm_kommuner_procent + " %";

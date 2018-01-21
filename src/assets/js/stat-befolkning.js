@@ -11,5 +11,5 @@ var scb_data = {
 document.addEventListener("DOMContentLoaded", function() {
     // this function runs when the DOM is ready, i.e. when the document has been parsed
 	var befolkning_antal = (scb_data.befolkning[2].antal / 1000000).toFixed(1);
-  document.getElementById("stat-befolkning").textContent = befolkning_antal + " miljoner svenskar är folkbokförda i Sverige.";
+  document.getElementById("stat-befolkning").textContent = befolkning_antal + " miljoner privatpersoner är folkbokförda i Sverige.";
 });
