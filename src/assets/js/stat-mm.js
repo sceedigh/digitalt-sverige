@@ -1,5 +1,5 @@
 // Mina meddelanden - antal innehavare av digitala brevlådor för myndighetspost (Öppet API från Skatteverket)
-var mm_data_url = "https://skatteverket.entryscape.net/rowstore/dataset/23fb9225-4eb6-4ae4-9835-5dc721c75717/json";
+var mm_data_url = "https://skatteverket.entryscape.net/rowstore/dataset/2927e831-9075-4bc0-b3a2-3336a992ca4b/json";
 var mm_antal_privat;
 var mm_antal_foretag;
 var mm_myndigheter = 19; // 201802
