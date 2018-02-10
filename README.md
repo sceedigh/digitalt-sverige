@@ -46,10 +46,18 @@ Antal företag i Sverige
   * URL: http://www.bolagsverket.se/be/sok/etjanster/statistik/statistik-1.3538
   * Uppdateringsfrekvens: Månadsvis
 
-Antal innehavare av digitala brevlådor för myndighetspost
-=========================================================
+Antal innehavare av digitala brevlådor för myndighetspost (Mina meddelanden)
+============================================================================
   * Källa: Skatteverket (Mina meddelanden)
   * API: öppet API (REST/JSON)
-  * URL: https://oppnadata.se/dataset/statistik-mina-meddelanden
+  * URL: https://skatteverket.entryscape.net/#view=dataset&resource=https://skatteverket.entryscape.net/store/9/resource/194
   * Uppdateringsfrekvens: Veckovis
   * Beskrivning: Antal användare i tjänsten Mina meddelanden fördelat på privatpersoner och företag som har registrerat sig som mottagare i tjänsten och har en aktiv digital brevlåda för myndighetspost
+  
+Antal avsändare (myndigheter och kommuner) av digital myndighetspost (Mina meddelanden)
+=======================================================================================
+  * Källa: Skatteverket (Mina meddelanden)
+  * API: öppet API (REST/JSON)
+  * URL: https://skatteverket.entryscape.net/#view=dataset&resource=https://skatteverket.entryscape.net/store/9/resource/547
+  * Uppdateringsfrekvens: Veckovis
+  * Beskrivning: Antal avsändare i tjänsten Mina meddelanden, fördelade på myndigheter och kommuner.
