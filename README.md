@@ -9,7 +9,7 @@ DigitaltSverige.se visar öppna data om digitaliseringen av Sverige utifrån med
 
 Mobil e-legitimation och digitala brevlådor för myndighetspost utgör grunden för Sveriges nationella digitala infrastruktur som från och med 2018 samordnas av Digitaliseringsmyndigheten.
           
-I nuläget är data om digitala brevlådor tillgängliga via öppet API från Skatteverket och uppdateras därmed automatiskt. Övriga data om befolkningsmängd (SCB), företag (Bolagsverket) och Mobilt BankID (Finansiell ID-Teknik AB) finns ej tillgängliga via öppet API och måste därmed uppdateras manuellt genom kontinuerliga uppdateringar av tjänsten. Genom att visa vilka datakällor som är intressanta för att mäta och följa upp digitaliseringen av Sverige kan tjänsten fungera som underlag för att ställa krav på att tillgängliggöra dessa datakällor via API:er i framtiden.
+I nuläget är data om befolkningsmängd i Sverige samt digitala brevlådor (Mina meddelanden) tillgängliga via öppet API från SCB och Skatteverket och uppdateras därmed automatiskt. Övriga data om företag (Bolagsverket) och Mobilt BankID (Finansiell ID-Teknik AB) finns ej tillgängliga via öppet API och måste därmed uppdateras manuellt genom kontinuerliga uppdateringar av tjänsten. Genom att visa vilka datakällor som är intressanta för att mäta och följa upp digitaliseringen av Sverige kan tjänsten fungera som underlag för att ställa krav på att tillgängliggöra dessa datakällor via API:er i framtiden.
 
 Tjänsten utgörs av en mycket enkel SPA (Single Page Application) som hämtar data direkt via Javascript från externa öppna API:er via REST/JSON:
 
@@ -28,7 +28,7 @@ Följande datakällor används i tjänsten:
 Befolkningsmängd i Sverige
 ==========================
   * Källa: SCB
-  * API: saknas
+  * API: öppet API
   * URL: http://www.scb.se/hitta-statistik/statistik-efter-amne/befolkning/befolkningens-sammansattning/befolkningsstatistik/
   * Uppdateringsfrekvens: Var 3:e månad
 
@@ -46,10 +46,18 @@ Antal företag i Sverige
   * URL: http://www.bolagsverket.se/be/sok/etjanster/statistik/statistik-1.3538
   * Uppdateringsfrekvens: Månadsvis
 
-Antal innehavare av digitala brevlådor för myndighetspost
-=========================================================
+Antal innehavare av digitala brevlådor för myndighetspost (Mina meddelanden)
+============================================================================
   * Källa: Skatteverket (Mina meddelanden)
   * API: öppet API (REST/JSON)
-  * URL: https://oppnadata.se/dataset/statistik-mina-meddelanden
+  * URL: https://skatteverket.entryscape.net/#view=dataset&resource=https://skatteverket.entryscape.net/store/9/resource/194
   * Uppdateringsfrekvens: Veckovis
   * Beskrivning: Antal användare i tjänsten Mina meddelanden fördelat på privatpersoner och företag som har registrerat sig som mottagare i tjänsten och har en aktiv digital brevlåda för myndighetspost
+  
+Antal avsändare (myndigheter och kommuner) av digital myndighetspost (Mina meddelanden)
+=======================================================================================
+  * Källa: Skatteverket (Mina meddelanden)
+  * API: öppet API (REST/JSON)
+  * URL: https://skatteverket.entryscape.net/#view=dataset&resource=https://skatteverket.entryscape.net/store/9/resource/547
+  * Uppdateringsfrekvens: Veckovis
+  * Beskrivning: Antal avsändare i tjänsten Mina meddelanden, fördelade på myndigheter och kommuner.
