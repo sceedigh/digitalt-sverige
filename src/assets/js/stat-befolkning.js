@@ -4,14 +4,6 @@
 var scb_api_url = "http://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101X/NTBE0101";
 var scb_folkmangd_aktuell;
 
-// var scb_data = {
-// 	"befolkning": [
-// 		{"datum": "2016-01", "antal": 9858855},
-// 		{"datum": "2017-01", "antal": 10008271},
-// 		{"datum": "2017-11", "antal": 10112669},
-// 	]
-// };
-
 var scb_request = {
 	"query": [
 		{
@@ -34,13 +26,9 @@ var scb_request = {
 		}
 	],
 	"response": {
-		"format": "px"
+		"format": "json"
 	}
 };
-
-function checkSCBData(element) {
-	return element.trim().startsWith("DATA=");
-}
 
 function fetchSCBData() {
 	// Hämta parameter för aktuell år/månad (HTTP GET)
@@ -74,14 +62,10 @@ function fetchSCBData() {
 									return;
 							  }
 
-							  // Parsa svar från SCB (text)
-							  response.text().then(function(scb_data_response) {
+							  // Parsa JSON-svar från SCB
+							  response.json().then(function(scb_data_response) {
 
-									var response_array = scb_data_response.split(";");
-									// Hämta data-element med folkmängd
-									var scb_folkmangd_elem = response_array.find(checkSCBData).split("=");
-									// Formatera till miljontal med 1 decimal
-									scb_folkmangd_aktuell = (scb_folkmangd_elem[1] / 1000000).toFixed(1);
+									var scb_folkmangd_aktuell = (scb_data_response.data[0].values / 1000000).toFixed(1);
 
 									document.getElementById("stat-befolkning").textContent = scb_folkmangd_aktuell + " miljoner privatpersoner är folkbokförda i Sverige.";
 								});
