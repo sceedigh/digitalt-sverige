@@ -18,13 +18,31 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<script>
+			function initPage() {
+				if (isIE()) {
+					showAlert("Internet Explorer stöds ej som webbläsare. Prova att använda Edge, Chrome eller Safari.");
+				} else {
+					fetchData();
+				}
+			}
+
 			function fetchData() {
 				fetchSCBData();
 				fetchMMData();
+				//fetchKommuner(); // Avvakta no-cors hos SKL
+			}
+
+			function isIE() {
+    		return /Trident\/|MSIE/.test(window.navigator.userAgent);
+			}
+
+			function showAlert(text) {
+				document.getElementById("nav").textContent = "";
+				document.getElementById("main").textContent = text;
 			}
 		</script>
 	</head>
-	<body onload="fetchData()">
+	<body onload="initPage()">
 
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -57,7 +75,7 @@
 								<ul class="features">
 									<li>
 										<span class="icon major style5 fa-user-o"></span>
-										<h3><strong><a href="http://www.scb.se/hitta-statistik/statistik-efter-amne/befolkning/befolkningens-sammansattning/befolkningsstatistik/" target="_blank"><div id="stat-befolkning"></div></a></strong></h3>
+										<h3><strong><a href="https://www.scb.se/hitta-statistik/statistik-efter-amne/befolkning/befolkningens-sammansattning/befolkningsstatistik/" target="_blank"><div id="stat-befolkning"></div></a></strong></h3>
 									</li>
 									<li>
 										<span class="icon major style3 fa-id-badge"></span>
@@ -83,7 +101,7 @@
 								<ul class="features">
 									<li>
 										<span class="icon major style5 fa-industry"></span>
-										<h3><strong><a href="http://www.bolagsverket.se/be/sok/etjanster/statistik/statistik-1.3538" target="_blank"><div id="stat-foretag"></div></a></strong></h3>
+										<h3><strong><a href="https://www.bolagsverket.se/be/sok/etjanster/statistik/statistik-1.3538" target="_blank"><div id="stat-foretag"></div></a></strong></h3>
 									</li>
 									<li>
 										<span class="icon major style1 fa-envelope-o"></span>
@@ -152,7 +170,7 @@
 										som nyttjar e-legitimering samt hur många som skickar säker digital myndighetspost via Mina meddelanden.</p>
 									<p>E-legitimationer och digitala brevlådor för myndighetspost (Mina meddelanden) utgör en del av
 										Sveriges nationella digitala infrastruktur som från och med 2018 samordnas av
-										<a href="http://www.regeringen.se/rattsdokument/kommittedirektiv/2017/12/dir.-2017117/" target="_blank">Myndigheten för digitalisering av den offentliga sektorn</a>.</p>
+										<a href="https://www.regeringen.se/rattsdokument/kommittedirektiv/2017/12/dir.-2017117/" target="_blank">Myndigheten för digitalisering av den offentliga sektorn</a>.</p>
 								</header>
 							</section>
 
