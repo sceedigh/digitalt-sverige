@@ -1,7 +1,7 @@
 // Befolkningsmängd från SCB:
 // http://www.scb.se/hitta-statistik/statistik-efter-amne/befolkning/befolkningens-sammansattning/befolkningsstatistik/
 // HTTP GET = metadata, HTTP POST = data
-var scb_api_url = "http://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101X/NTBE0101";
+var scb_api_url = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101X/NTBE0101";
 var scb_folkmangd_aktuell;
 
 var scb_request = {
