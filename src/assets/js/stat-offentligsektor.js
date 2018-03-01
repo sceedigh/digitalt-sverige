@@ -1,16 +1,12 @@
 var myndigheter_antal = 351; // http://www.myndighetsregistret.scb.se/Arsstatistik.aspx
-var kommuner_antal = 290; // https://skl.se/tjanster/kommunerlandsting/faktakommunerochlandsting.432.html
+var kommuner_antal;
 
 var kommuner_api_url = "https://catalog.skl.se/rowstore/dataset/491a181b-4b6d-422e-997c-0fb2fc6bd8bc/json";
 
 // Hämta statistik om kommuner från SKL
 function fetchKommuner() {
 
-	fetch(kommuner_api_url, {
-    method: 'GET',
-    //mode: 'cors',
-    headers: {'Content-Type':'application/json'},
-  })
+	fetch(kommuner_api_url)
 	  .then(
 			function(response) {
 			  if (response.status !== 200) {
@@ -22,7 +18,6 @@ function fetchKommuner() {
 			  // Examine the text in the response
 			  response.json().then(function(data) {
 
-          //console.log(data.resultCount);
           kommuner_antal = data.resultCount;
 
 					document.getElementById("stat-offentligsektor-kommuner").textContent = kommuner_antal + " kommuner";
@@ -37,5 +32,4 @@ function fetchKommuner() {
 document.addEventListener("DOMContentLoaded", function() {
     // this function runs when the DOM is ready, i.e. when the document has been parsed
   document.getElementById("stat-offentligsektor-myndigheter").textContent = myndigheter_antal + " myndigheter";
-	document.getElementById("stat-offentligsektor-kommuner").textContent = kommuner_antal + " kommuner";
 });
