@@ -1,5 +1,5 @@
 var myndigheter_antal = 351; // http://www.myndighetsregistret.scb.se/Arsstatistik.aspx
-var kommuner_antal;
+var kommuner_antal = 290;
 
 var kommuner_api_url = "https://catalog.skl.se/rowstore/dataset/491a181b-4b6d-422e-997c-0fb2fc6bd8bc/json";
 
@@ -32,4 +32,5 @@ function fetchKommuner() {
 document.addEventListener("DOMContentLoaded", function() {
     // this function runs when the DOM is ready, i.e. when the document has been parsed
   document.getElementById("stat-offentligsektor-myndigheter").textContent = myndigheter_antal + " myndigheter";
+	document.getElementById("stat-offentligsektor-kommuner").textContent = kommuner_antal + " kommuner";
 });
