@@ -7,11 +7,12 @@ var foretag_data = {
 	  {"datum": "2016-01", "antal": 631691},
 	  {"datum": "2017-01", "antal": 656423},
 	  {"datum": "2018-01", "antal": 682279},
+		{"datum": "2018-02", "antal": 684445},
 	]
 };
 
 document.addEventListener("DOMContentLoaded", function() {
     // this function runs when the DOM is ready, i.e. when the document has been parsed
-	foretag_antal = foretag_data.foretag[2].antal;
+	foretag_antal = foretag_data.foretag[3].antal;
   document.getElementById("stat-foretag").textContent = foretag_antal.toLocaleString() + " företag är registrerade i Sverige.";
 });
