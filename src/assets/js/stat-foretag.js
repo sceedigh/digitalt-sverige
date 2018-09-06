@@ -1,4 +1,4 @@
-// Företagsstatistik från Bolagsverket (API saknas):
+// Företagsstatistik från Bolagsverket (öppet API saknas):
 // http://www.bolagsverket.se/be/sok/etjanster/statistik/statistik-1.3538
 // Aktuella bolagsformer för Mina meddelanden: AB, KB, HB, BRF, EK
 var foretag_antal;
@@ -7,7 +7,7 @@ var foretag_data = {
 	  {"datum": "2016-01", "antal": 631691},
 	  {"datum": "2017-01", "antal": 656423},
 	  {"datum": "2018-01", "antal": 682279},
-		{"datum": "2018-02", "antal": 684445},
+		{"datum": "2018-08", "antal": 692239},
 	]
 };
 
