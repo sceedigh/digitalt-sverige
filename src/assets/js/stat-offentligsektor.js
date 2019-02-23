@@ -1,4 +1,4 @@
-var myndigheter_antal = 351; // http://www.myndighetsregistret.scb.se/Arsstatistik.aspx
+var myndigheter_antal = 352; // http://www.myndighetsregistret.scb.se/Ar
 var kommuner_antal = 290;
 
 var kommuner_api_url = "https://catalog.skl.se/rowstore/dataset/491a181b-4b6d-422e-997c-0fb2fc6bd8bc/json";
