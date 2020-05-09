@@ -1,20 +1,50 @@
 // Mina meddelanden - antal innehavare av digitala brevlådor för myndighetspost (Öppet API från Skatteverket)
 var mm_data_mottagare_url = "https://skatteverket.entryscape.net/rowstore/dataset/2927e831-9075-4bc0-b3a2-3336a992ca4b/json";
 var mm_data_avsandare_url = "https://skatteverket.entryscape.net/rowstore/dataset/120b9d9d-e509-4801-836f-c4444cf81fcc/json";
-var mm_privat_antal;
-var mm_foretag_antal;
-var mm_myndigheter_antal;
-var mm_kommuner_antal;
+
+var stat_mm_datum = "2020-05";
+
+var mm_privat_antal = 3979682;
+var mm_foretag_antal = 122925;
+var mm_myndigheter_antal = 54;
+var mm_kommuner_antal = 76;
+var mm_regioner_antal = 6;
 var mm_foretag_procent;
 var mm_myndigheter_procent;
 var mm_kommuner_procent;
+var mm_regioner_procent;
 
 function fetchMMData() {
-	fetchMMMottagare();
-	fetchMMAvsandare();
+	//fetchMMMottagare(); // inaktiverat p.g.a. inaktuell data från Skatteverkets API
+	//fetchMMAvsandare(); // inaktiverat p.g.a. inaktuell data från Skatteverkets API
+	displayMMMottagare();
+	displayMMAvsandare();
 }
 
-// Hämta statistik om mottagare i Mina meddelanden
+
+// Visa statistik om mottagare i Mina meddelanden från statisk data
+function displayMMMottagare() {
+	mm_privat_antal = (mm_privat_antal / 1000000).toFixed(1);
+	mm_foretag_procent = Math.round((mm_foretag_antal/foretag_antal)*100);
+
+	document.getElementById("stat-mm-privat").textContent = mm_privat_antal + " miljoner privatpersoner har en säker digital brevlåda för myndighetspost.";
+	document.getElementById("stat-mm-privat-datum").textContent = "(" + stat_mm_datum + ")";
+	document.getElementById("stat-mm-foretag").textContent = mm_foretag_antal.toLocaleString() + " företag (" + mm_foretag_procent + " %) har en säker digital brevlåda för myndighetspost.";
+	document.getElementById("stat-mm-foretag-datum").textContent = "(" + stat_mm_datum + ")";
+}
+
+// Visa statistik om avsändare i Mina meddelanden från statisk data
+function displayMMAvsandare() {
+	mm_myndigheter_procent = Math.round((mm_myndigheter_antal/myndigheter_antal)*100);
+	mm_kommuner_procent = Math.round((mm_kommuner_antal/kommuner_antal)*100);
+	mm_regioner_procent = Math.round((mm_regioner_antal/regioner_antal)*100);
+
+	document.getElementById("stat-mm-myndigheter").textContent = mm_myndigheter_procent + " %";
+	document.getElementById("stat-mm-kommuner").textContent = mm_kommuner_procent + " %";
+	document.getElementById("stat-mm-regioner").textContent = mm_regioner_procent + " %";
+}
+
+// Hämta statistik om mottagare i Mina meddelanden från Skatteverkets API
 function fetchMMMottagare() {
 
 	fetch(mm_data_mottagare_url)
@@ -45,7 +75,7 @@ function fetchMMMottagare() {
 	});
 }
 
-// Hämta statistik om avsändare i Mina meddelanden
+// Hämta statistik om avsändare i Mina meddelanden från Skatteverkets API
 function fetchMMAvsandare() {
 
 	fetch(mm_data_avsandare_url)
