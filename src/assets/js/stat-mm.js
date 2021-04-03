@@ -2,13 +2,13 @@
 var mm_data_mottagare_url = "https://skatteverket.entryscape.net/rowstore/dataset/2927e831-9075-4bc0-b3a2-3336a992ca4b/json";
 var mm_data_avsandare_url = "https://skatteverket.entryscape.net/rowstore/dataset/120b9d9d-e509-4801-836f-c4444cf81fcc/json";
 
-var stat_mm_datum = "2020-05";
+var stat_mm_datum = "2021-04";
 
-var mm_privat_antal = 3979682;
-var mm_foretag_antal = 122925;
-var mm_myndigheter_antal = 54;
-var mm_kommuner_antal = 76;
-var mm_regioner_antal = 6;
+var mm_privat_antal = 4438142;
+var mm_foretag_antal = 141688;
+var mm_myndigheter_antal = 56;
+var mm_kommuner_antal = 101;
+var mm_regioner_antal = 12;
 var mm_foretag_procent;
 var mm_myndigheter_procent;
 var mm_kommuner_procent;
@@ -40,8 +40,11 @@ function displayMMAvsandare() {
 	mm_regioner_procent = Math.round((mm_regioner_antal/regioner_antal)*100);
 
 	document.getElementById("stat-mm-myndigheter").textContent = mm_myndigheter_procent + " %";
+	document.getElementById("stat-mm-myndigheter-datum").textContent = "(" + stat_mm_datum + ")";
 	document.getElementById("stat-mm-kommuner").textContent = mm_kommuner_procent + " %";
+	document.getElementById("stat-mm-kommuner-datum").textContent = "(" + stat_mm_datum + ")";
 	document.getElementById("stat-mm-regioner").textContent = mm_regioner_procent + " %";
+	document.getElementById("stat-mm-regioner-datum").textContent = "(" + stat_mm_datum + ")";
 }
 
 // Hämta statistik om mottagare i Mina meddelanden från Skatteverkets API
