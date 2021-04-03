@@ -7,7 +7,7 @@ var foretag_data = {
 	  {"datum": "2016-01", "antal": 631691},
 	  {"datum": "2017-01", "antal": 656423},
 	  {"datum": "2018-01", "antal": 682279},
-		{"datum": "2020-04", "antal": 733206},
+		{"datum": "2021-04", "antal": 764089},
 	]
 };
 
